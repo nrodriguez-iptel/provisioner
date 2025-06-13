@@ -229,8 +229,8 @@ try{
         $array_return['result_id']=$xml_array["result_id"];
         $array_return['result']=$xml_array["result"];
         $array_return['error']=$xml_array["error"];
-        $array_return['acct_admin_stat']=$xml_array["acct_admin_stat"];
-        $array_return['cliente_desconectado']=$xml_array["disconnected"];
+        //$array_return['acct_admin_stat']=$xml_array["acct_admin_stat"];
+        //$array_return['cliente_desconectado']=$xml_array["disconnected"];
     var_dump($array_return);
     curl_close($curl);
     return $array_return;
