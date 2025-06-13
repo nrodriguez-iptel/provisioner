@@ -16,8 +16,9 @@ try {
     //Istancio la clase db para acceder a los metodos
     $odb = new DB($_esquema);
     //consulta
-    logger("Inicio main 10.1.9.144...");
-    echo "\n Inicio main...".date("h:i:sa");
+    $version="20250613";
+    logger("Inicio main $version...");
+    echo "\n Inicio main $version...".date("h:i:sa");
     $sQuery = "SELECT id, type, status, insert_date, execution_date, xml_string::xml, username, 
        response, id_customer, customer_item, location, id_orden, userid, 
        contrato "
@@ -46,7 +47,7 @@ try {
         
         
        if ($tipo=="ATCON" || $tipo=="BACON" || $tipo=="SUCON" || $tipo=="HACON" || $tipo=="STSON" 
-                || $tipo=="AUTON" || $tipo=="ATCIF" || $tipo=="BACIF" || $tipo=="SUCIF" || $tipo=="HACIF" || $tipo=="ATLON" || $tipo=="BALON" || $tipo=="UPHIF" || $tipo=="HAMIF" || $tipo=="UPFON" || $tipo=="STSIF" ) 
+                || $tipo=="AUTON" || $tipo=="ATCIF" || $tipo=="BACIF" || $tipo=="SUCIF" || $tipo=="HACIF" || $tipo=="ATLON" || $tipo=="BALON" || $tipo=="UPHIF" || $tipo=="HAMIF" || $tipo=="UPFON" || $tipo=="STMIF" || $tipo=="STCIF" ) 
             {
         
             logger("Ingreso por operaciones de ISPFULL ".$tipo );
@@ -55,9 +56,11 @@ try {
                 logger("Convirtiendo serial para el tipo de operacion: ".$tipo);
                 $_fsan=convertirSerialEquipo($json_string['fsan']); //20240510 llamamos a la funcion para verificar si cambia la mac
             }else{
+                
                  if (isset($json_string['fsan']))
                     {
                     $_fsan=$json_string['fsan'];
+                    logger("valor fsan encontrado: ".$_fsan);
                     }
             }
             
@@ -447,11 +450,22 @@ try {
                                     'Error desconocido en upgrade de la ONU'
                                 );
                                 break;
-                     case "STSIF":    
+                     case "STCIF":    
                                 list($_estado, $resultado_operacion) = procesarOperacionIspfull(
-                                    'consulta de estado CM en Ispfull',
+                                    'consulta de estado cliente HFC en Ispfull',
                                     'client_status',
                                     [$_client],
+                                    'DONE',
+                                    'ERRO',
+                                    'Operación exitosa - Estado conectado cliente: ',
+                                    'Error desconocido en estado cliente HFC en Ispfull'
+                                );
+                                break;
+                     case "STMIF":    
+                                list($_estado, $resultado_operacion) = procesarOperacionIspfull(
+                                    'consulta de estado CM HFC en Ispfull',
+                                    'cm_status',
+                                    [$_fsan],
                                     'DONE',
                                     'ERRO',
                                     'Operación exitosa - Estado conectado cliente: ',
@@ -464,8 +478,8 @@ try {
          
     }
     pg_free_result($result);
-    logger("Fin main");
-    echo "\n Fin main 10.1.9.144...".date("h:i:sa") ."\n";
+    logger("Fin main $version");
+    echo "\n Fin main $version...".date("h:i:sa") ."\n";
     
 } catch (Exception $ex) {
     echo $ex->mesagge;
