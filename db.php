@@ -8,7 +8,6 @@
 Class DB
 {
 	Private $esquema; //Esquema de base de datos recibida
-
 	//constructor
 	function DB($Esquema){
 		$this->esquema = $Esquema;
