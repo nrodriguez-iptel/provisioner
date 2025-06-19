@@ -280,7 +280,7 @@ try {
                             );
                             break;
                 case "ATCIF":
-                            logger("Iniciando alta de módem HFC en Ispfull");
+                            logger("Iniciando alta de cliente/módem HFC en Ispfull");
 
                              if (empty($_fsan)){
                                 $resultado_operacion_fsan['result_id']=-112;
@@ -342,11 +342,11 @@ try {
                                 list($_estado, $resultado_operacion) = procesarOperacionIspfull(
                                 'baja modem hfc en ispfull',
                                 'cm_baja',
-                                [$_client],
+                                [$_fsan],
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en la baja modem hfc'
                             );
                                 }  
                      break;  
@@ -361,7 +361,7 @@ try {
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en la suspension cliente hfc'
                             );
                             break;
                 case "HACIF":    
@@ -375,14 +375,11 @@ try {
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en la habilitacion cliente hfc'
                             );
                             break;
                 case "ATLON":    
                     //ALATA LINEA EN FTTH 20250124
-                            logger("Iniciando  alta Linea en ispfull");
-                            echo $_fsan . $_did;
-                            //$resultado_operacion_fsan= asignar_telefonia($_fsan, $_did, $_voip, $_regusername, $_regpass);
                                list($_estado, $resultado_operacion) = procesarOperacionIspfull(
                                 'alta linea FTTH en Ispfull',
                                 'asignar_telefonia',
@@ -390,7 +387,7 @@ try {
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en la alta linea FTTH'
                             );
                             break;
                 case "BALON":    
@@ -402,7 +399,7 @@ try {
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en la baja de la linea en FTTH'
                             );
                             break;
                 case "UPHIF":    
@@ -417,17 +414,17 @@ try {
                                   list($_estado, $resultado_operacion) = procesarOperacionIspfull(
                                 'upgrade velocidad HFC en Ispfull',
                                 'cm_alta',
-                                [$_fsan, $_cmModel, $_cmts, $_clientname, $_address,$_Tel,$_Lat,$_Lon,$_Dni,$_service, $_client],
+                                [$_fsan, $_cmModel, $_clientname, $_address,$_Tel,$_Lat,$_Lon,$_Dni,$_service, $_client],
                                 'DONE',
                                 'ERRO',
                                 'Operación exitosa - ',
-                                'Error desconocido en la reconexión del CM'
+                                'Error desconocido en upgrade HFC del CM'
                             );
                             }
                             break;     
                    case "HAMIF":    
                     //reconexion de modem HFC ISPFULL  20250109
-                            logger("Iniciando reconexion modem hfc en ispfull");
+                            //logger("Iniciando reconexion modem hfc en ispfull");
                             list($_estado, $resultado_operacion) = procesarOperacionIspfull(
                                 'reconexión de módem HFC en Ispfull',
                                 'habilitar_modem_hfc_ispfull',
