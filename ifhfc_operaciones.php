@@ -65,9 +65,9 @@ function client_status($client_id){
 ///////////////////
 //alta de una CM 
 ///////////////////
-function cm_alta($fsan, $cmModel, $cmts, $name, $address, $tel, $lat, $lon, $dni, $service, $id_cliente){
+function cm_alta($fsan, $cmModel, $name, $address, $tel, $lat, $lon, $dni, $service, $id_cliente){
     try{
-         logger("datos alta CM:cm_provision|$fsan|$cmModel|$cmts|$name|$address|$tel|$lat|$lon|$dni|$service");
+         logger("datos alta CM:cm_provision|$fsan|$cmModel|$name|$address|$tel|$lat|$lon|$dni|$service");
           global $_token;
           global $_operator;
           global $_url;  
