@@ -28,6 +28,7 @@ try {
     $reg_count= pg_num_rows ($result);
     $tenencia=2; //nr 20250218 definimos el valor de la tenencia para FD3 igual a 2    
     logger("Nro. OPs: ".$reg_count);
+    echo "\n Nro. OPs: $reg_count";
     //Recorro los datos consultados
     while($row = pg_fetch_array($result))
     {
