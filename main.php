@@ -294,7 +294,7 @@ try {
                                 list($_estado, $resultado_operacion) = procesarOperacionIspfull(
                                     'alta de módem HFC en Ispfull',
                                     'cm_alta',
-                                    [$_fsan, $_cmModel, $_cmts, $_clientname, $_address, $_Tel, $_Lat, $_Lon, $_Dni, $_service, $_client],
+                                   [$_fsan, $_cmModel, $_clientname, $_address, $_Tel, $_Lat, $_Lon, $_Dni, $_service, $_client],
                                     'DONE',
                                     'ERRO',
                                     'Operación exitosa',
